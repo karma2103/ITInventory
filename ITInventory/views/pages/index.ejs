@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+      <div class="container">
+        <h2>Template Selector with Go Buttons</h2>
+        <form id="templateForm">
+          <div class="form-group">
+            <label for="templateSelect">Select a Template:</label>
+            <div class="input-group">
+              <select class="form-control" id="templateSelect" name="template">
+                <option value="">Select a template...</option>
+                <option value="RiskRegister">Backup Register</option>
+                <option value="template2">Asset OutWards</option>
+                <option value="template3">Asset Inwards</option>
+                <option value="ViewCapturedetails">IT Inventory</option>
+                <option value="report">Report</option>
+                <!-- Add more template options as needed -->
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-primary" id="goButton" type="button">Go</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // Handle Go button click
+      $("#goButton").on("click", function () {
+        var selectedTemplate = $("#templateSelect").val()
+        if (selectedTemplate === "RiskRegister") {
+          window.location.href = "/backups" 
+        } else if (selectedTemplate === "template2") {
+          window.location.href = "/viewAssets" 
+        } else if (selectedTemplate === "template3") {
+          window.location.href = "/viewAssetsInward" 
+        }
+          else if (selectedTemplate === "ViewCapturedetails") {
+          window.location.href = "/ViewCapturedetails" 
+        } else if (selectedTemplate === "report") {
+          window.location.href = "/report" 
+        }
+      })
+    </script>
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>

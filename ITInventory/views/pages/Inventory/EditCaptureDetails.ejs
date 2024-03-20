@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head'); %>
+</head>
+
+<body class="container">
+    <header><%- include('../../partials/header'); %></header>
+
+    <main>
+        <div class="container">
+            <h2>Edit Inventory Details</h2>
+            <form action="/updateInventory/<%=assetDetails._id%>" method="post">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="name" class="form-control" id="name" value="<%= assetDetails.name %>"
+                                name="name" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ipAddress">IP Address</label>
+                            <input type="text" class="form-control" id="ipAddress" name="ipAddress"
+                                value="<%= assetDetails.ipAddress %>" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="macAddress">MAC Address</label>
+                            <input type="text" class="form-control" id="macAddress" name="macAddress"
+                                value="<%= assetDetails.macAddress %>" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="osInfo">Operating System</label>
+                            <input type="text" class="form-control" id="osInfo" name="osInfo"
+                                value="<%= assetDetails.osInfo %>" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="deviceType">Device Type</label>
+                            <input type="text" class="form-control" id="deviceType" name="deviceType"
+                                value="<%= assetDetails.deviceType %>" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="processor">Processor</label>
+                            <input type="text" class="form-control" id="processor" name="processor"
+                                value="<%= assetDetails.processor %>" required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="manufacturer">Manufacturer</label>
+                            <input type="text" class="form-control" id="manufacturer"
+                                value="<%= assetDetails.manufacturer %>" name="manufacturer" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <input type="text" class="form-control" id="model" name="model"
+                                value="<%= assetDetails.model %>" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="hostname">Host Name</label>
+                            <input type="text" class="form-control" id="hostname" name="hostname"
+                                value="<%= assetDetails.hostname %>" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="serialNumber">Serial Number</label>
+                            <input type="text" class="form-control" id="serialNumber" name="serialNumber"
+                                value="<%= assetDetails.serialNumber %>" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="memory">Memory</label>
+                            <input type="text" class="form-control" id="memory" value="<%= assetDetails.memory %>"
+                                name="memory" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="isHDDOrisSSD">Storage Type</label>
+                            <input type="text" class="form-control" id="isHDDOrisSSD" name="isHDDOrisSSD" rows="3"
+                                value="<%= assetDetails.isHDDOrisSSD %>" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="hdd">HDD</label>
+                            <input type="text" class="form-control" id="hdd" name="hdd" rows="3"
+                                value="<%= assetDetails.storage.hdd %>" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="ssd">SSD</label>
+                            <input type="text" class="form-control" id="ssd" name="ssd" rows="3"
+                                value="<%= assetDetails.storage.ssd %>" required />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="custodian">Custodian</label>
+                            <input type="text" class="form-control" id="custodian" name="custodian" rows="3"
+                                value="<%= assetDetails.custodian %>" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="empID">Employee ID</label>
+                            <input type="text" class="form-control" id="empID" name="empID"
+                                value="<%= assetDetails.empID %>" required />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <input type="text" class="form-control" id="department" name="department" rows="3"
+                                value="<%= assetDetails.department %>" required />
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="placement">Placement</label>
+                            <input type="text" class="form-control" id="placement" name="placement"
+                                value="<%= assetDetails.placement %>" required />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="dateofPurchase"> Date of Purchased</label>
+                            <input type="date" class="form-control" id="dateofPurchase" name="dateofPurchase" rows="3"
+                                value="<%= assetDetails.dateofPurchase %>" required />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="dateofIssued"> Date of Issued</label>
+                            <input type="date" class="form-control" id="dateofIssued" name="dateofIssued" rows="3"
+                                value="<%= assetDetails.dateofIssued %>" required />
+                        </div>
+                    </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="equipIssuance">Equipment Issurance</label>
+                                <input type="text" class="form-control" id="equipIssuance" name="equipIssuance"
+                                    value="<%= assetDetails.equipIssuance %>" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/ViewCaptureDetails" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </main>
+    <script>
+        document.getElementById("cancelButton").addEventListener("click", function () {
+            window.location.href = "/other-page" // Replace with the actual URL you want to redirect to
+        })
+    </script>
+    <footer><%- include('../../partials/footer'); %></footer>
+</body>
+
+</html>

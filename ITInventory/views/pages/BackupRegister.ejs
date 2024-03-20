@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../partials/header'); %></header>
+    <main>
+      <div class="container">
+        <h2>Backup Register</h2>
+        <form action="/create" method="POST">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="server">Server:</label>
+                <select class="form-control" id="server" name="server" required>
+                  <option value="">Choose a Server Name</option>
+                  <option value="LMS">Loan Management System (LMS)</option>
+                  <option value="IMS">Insurance Management System (IMS)</option>
+                  <option value="SNS">Social Networking Serivce (SNS)</option>
+                  <option value="ERP">Enterprise Resource Planning (ERP)</option>
+                  <option value="PPF&GF">Private Provident Fund & Gratuity Fund (PPF&GF)</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="backupType">Backup Type:</label>
+                <select class="form-control" id="backupType" name="backupType" required>
+                  <option value="full">Full Backup</option>
+                  <option value="incremental">Incremental Backup</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startTime">Start Time:</label>
+                <input type="time" class="form-control" id="startTime" name="startTime" required />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endTime">End Time:</label>
+                <input type="time" class="form-control" id="endTime" name="endTime" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mediaType">Media Type:</label>
+                <input type="text" class="form-control" id="mediaType" name="mediaType" required />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mediaSrNo">Media Sr. No:</label>
+                <input type="text" class="form-control" id="mediaSrNo" name="mediaSrNo" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="backupLocation">Backup Location:</label>
+                <select class="form-control" id="backupLocation" name="backupLocation" required>
+                  <option value="Office">Office</option>
+                  <option value="Home">Home</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="backupTakenBy">Backup Taken By:</label>
+                <select class="form-control" id="backupTakenBy" name="backupTakenBy" required>
+                  <option value="">Choose an Option</option>
+                  <option value="Karma Tshewang">Karma Tshewang</option>
+                  <option value="Tenzin Norbu">Tenzin Norbu</option>
+                  <option value="Govinda Prasad Sharma">Govinda Prasad Sharma</option>
+                  <option value="Mohan Dhakel Prasad">Mohan Dhakel Prasad</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea class="form-control" id="remarks" name="remarks" rows="3" required></textarea>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="cancel" class="btn btn-danger">Cancel</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      document.getElementById("cancelButton").addEventListener("click", function () {
+        window.location.href = "/other-page" // Replace with the actual URL you want to redirect to
+      })
+    </script>
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../partials/head'); %>
+  </head>
+  <body >
+    <header><%- include('../../partials/header'); %></header>
+    <div class="container" style="max-width: 1448px !important;">
+      <% if (messages.success) { %>
+        <div id="success-message" class="alert alert-success">
+          <%= messages.success %>
+        </div>
+        <script>
+          // Automatically hide the success message after 2000 milliseconds (2 seconds)
+          setTimeout(function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+              successMessage.style.display = 'none';
+            }
+          }, 2000);
+        </script>
+      <% } %>
+      
+      <% if (messages.error) { %>
+        <div class="alert alert-danger">
+          <%= messages.error %>
+        </div>
+      <% } %>  
+      <div class="container">
+        <h2>Edit Backup Register</h2>
+        <form action="/update/<%= backup._id %>" method="post">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" value="<%= backup.date.toISOString().split('T')[0] %>" name="date" required />
+                
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="server">Server:</label>
+                <select class="form-control" id="server" name="server" required value="<%= backup.server %>">
+                <option value="<%= backup.server %>"><%= backup.server %></option>
+                  <option value="LMS">Loan Management System (LMS)</option>
+                  <option value="IMS">Insurance Management System (IMS)</option>
+                  <option value="SNS">Social Networking Serivce (SNS)</option>
+                  <option value="ERP">Enterprise Resource Planning (ERP)</option>
+                  <option value="PPF&GF">Private Provident Fund & Gratuity Fund (PPF&GF)</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="backupType">Backup Type:</label>
+                <select class="form-control" id="backupType" name="backupType" required>
+                <option value="<%= backup.backupType %>"><%= backup.backupType %></option>
+                  <option value="full">Full Backup</option>
+                  <option value="incremental">Incremental Backup</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startTime">Start Time:</label>
+                <input type="time" class="form-control" id="startTime" value="<%= backup.startTime %>" name="startTime" required />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endTime">End Time:</label>
+                <input type="time" class="form-control" id="endTime" value="<%= backup.endTime %>" name="endTime" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mediaType">Media Type:</label>
+                <input type="text" class="form-control" id="mediaType" value="<%= backup.mediaType %>" name="mediaType" required />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="mediaSrNo">Media Sr. No:</label>
+                <input type="text" class="form-control" id="mediaSrNo" name="mediaSrNo" value="<%= backup.mediaSrNo %>" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="backupLocation">Backup Location:</label>
+                <select class="form-control" id="backupLocation" name="backupLocation" required>
+                <option value="<%= backup.backupLocation %>"><%= backup.backupLocation %></option>  
+                  <option value="Office">Office</option>
+                  <option value="Home">Home</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="backupTakenBy">Backup Taken By:</label>
+                <select class="form-control" id="backupTakenBy" name="backupTakenBy" required>
+                <option value="<%= backup.backupTakenBy %>"><%= backup.backupTakenBy %></option>
+                  <option value="Tenzin Norbu">Tenzin Norbu</option>
+                  <option value="Govinda Prasad Sharma">Govinda Prasad Sharma</option>
+                  <option value="Mohan Dhakel Prasad">Mohan Dhakel Prasad</option>
+                  <!-- Add more options as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea class="form-control" id="remarks" name="remarks" rows="3" required><%= backup.remarks %></textarea>
+
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Update Backup</button>
+          <a href="/backups" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
+   
+  
+  </div>
+
+  <footer><%- include('../../partials/footer'); %></footer>
+</body>
+</html>

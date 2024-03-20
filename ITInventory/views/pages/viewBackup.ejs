@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body >
+    <header><%- include('../partials/header'); %></header>
+    <div class="container" style="max-width: 1448px !important;">
+      <% if (messages.success) { %>
+        <div id="success-message" class="alert alert-success">
+          <%= messages.success %>
+        </div>
+        <script>
+          // Automatically hide the success message after 2000 milliseconds (2 seconds)
+          setTimeout(function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+              successMessage.style.display = 'none';
+            }
+          }, 2000);
+        </script>
+      <% } %>
+      
+      <% if (messages.error) { %>
+        <div class="alert alert-danger">
+          <%= messages.error %>
+        </div>
+      <% } %>
+      
+      
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="mt-4">Backup Records</h1>
+        <a href="/BackupRegister" class="btn btn-primary">Add</a>
+        <!-- Add the "Add" button here -->
+      </div>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Date</th>
+            <th>Server</th>
+            <th>Backup Type</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Media Type</th>
+            <th>Media Sr.No</th>
+            <th>Backup Location</th>
+            <th>Backup Taken By</th>
+            <th>Remarks</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% backups.forEach((backup) => { %>
+          <tr>
+            <td><%= backup.date.toLocaleDateString('en-GB') %></td>
+            <td><%= backup.server %></td>
+            <td><%= backup.backupType %></td>
+            <td><%= backup.startTime %></td>
+            <td><%= backup.endTime %></td>
+            <td><%= backup.mediaType %></td>
+            <td><%= backup.mediaSrNo %></td>
+            <td><%= backup.backupLocation %></td>
+            <td><%= backup.backupTakenBy %></td>
+            <td><%= backup.remarks %></td>
+            <td>
+            <a href="/edit/<%= backup._id %>" class="btn btn-warning btn-sm">
+              <i class="fas fa-edit"></i> Edit
+            </a>
+              <button class="btn btn-danger delete-button btn-sm" data-id="<%= backup._id %>">Delete</button>
+          </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <!-- Pagination -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item <% if (currentPage === 1) { %>disabled<% } %>">
+            <a class="page-link" href="?page=<%= currentPage - 1 %>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <% for (let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <% if (currentPage === i) { %>active<% } %>">
+            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+          </li>
+          <% } %>
+          <li class="page-item <% if (currentPage === totalPages) { %>disabled<% } %>">
+            <a class="page-link" href="?page=<%= currentPage + 1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this backup record?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteButton">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update the script section in your EJS file -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Attach click event listener to delete buttons
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        // Set the data-id attribute on the modal's Delete button
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+        confirmDeleteButton.dataset.id = this.dataset.id;
+
+        // Show the modal
+        $('#confirmDeleteModal').modal('show');
+      });
+    });
+
+    // Attach click event listener to the modal's Delete button
+    const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    confirmDeleteButton.addEventListener('click', function () {
+      const backupId = this.dataset.id;
+
+      // Make a DELETE request to handle the actual deletion
+      fetch('/delete/' + backupId, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Check the response and handle accordingly
+        if (data.success) {
+          // Reload the page or update UI as needed
+          window.location.reload();
+        } else {
+          // Handle error, show message, etc.
+          console.error('Error deleting backup:', data.message);
+        }
+      });
+    });
+  });
+</script>
+
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
+</html>

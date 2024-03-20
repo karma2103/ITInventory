@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../../../partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('../../../partials/header'); %></header>
+
+    <main>
+      <div class="container">
+        <h2>Asset Inward Register</h2>
+        <form action="/inwardsPost" method="POST">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="serialNumber">Equipment Serial Number</label>
+                <input type="text" class="form-control" id="serialNumber" name="serialNumber" required />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="particulars">Particulars</label>
+                <textarea class="form-control" id="particulars" name="particulars" rows="3" required></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="assetDescription">Asset Description</label>
+                <textarea class="form-control" id="assetDescription" name="assetDescription" rows="3" required></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="suppiledBy">Supplied By</label>
+                <input type="text" class="form-control" id="suppiledBy" name="suppiledBy" required />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="receivedBy">Received By</label>
+                <input type="text" class="form-control" id="receivedBy" name="receivedBy" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea class="form-control" id="remarks" name="remarks" rows="3" required></textarea>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="cancel" class="btn btn-danger">Cancel</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      document.getElementById("cancelButton").addEventListener("click", function () {
+        window.location.href = "/other-page" // Replace with the actual URL you want to redirect to
+      })
+    </script>
+    <footer><%- include('../../../partials/footer'); %></footer>
+  </body>
+</html>

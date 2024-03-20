@@ -1,0 +1,35 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Info</title>
+</head>
+<body>
+    <script>
+        // Function to capture client information and send it to the server
+        async function captureInfo() {
+            try {
+                const response = await fetch('http://localhost:8080/captureInfo', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server response: ${response.statusText}`);
+                }
+
+                console.log('Information captured and sent successfully!');
+            } catch (error) {
+                console.error('Error capturing information:', error);
+            }
+        }
+
+        // Call the captureInfo function when the page loads
+        window.onload = captureInfo;
+    </script>
+</body>
+</html>
